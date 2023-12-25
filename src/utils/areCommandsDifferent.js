@@ -1,3 +1,9 @@
+/**
+ *
+ * @param {Object} existingCommand
+ * @param {Object} localCommand
+ * @returns
+ */
 module.exports = (existingCommand, localCommand) => {
   const areChoicesDifferent = (existingChoices, localChoices) => {
     for (const localChoice of localChoices) {

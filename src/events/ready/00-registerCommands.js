@@ -1,8 +1,13 @@
-const { testServer } = require('../../../config.json');
+const { testServer, messages } = require('../../../config.json');
 const getApplicationCommands = require('../../utils/getApplicationCommands');
 const getLocalCommands = require('../../utils/getLocalCommands');
 const areCommandsDifferent = require('../../utils/areCommandsDifferent');
+const { Client } = require('discord.js');
 
+/**
+ *
+ * @param {Client} client
+ */
 module.exports = async (client) => {
   try {
     const localCommands = getLocalCommands();
@@ -21,7 +26,7 @@ module.exports = async (client) => {
       if (existingCommand) {
         if (localCommand.deleted) {
           await applicationCommands.delete(existingCommand.id);
-          console.log(`Deleted command "${name}"`);
+          console.log(`${messages.COMMANDS.DELETED} - "${name}"`);
           continue;
         }
 
@@ -30,11 +35,11 @@ module.exports = async (client) => {
             description,
             options,
           });
-          console.log(`Edited command "${name}"`);
+          console.log(`${messages.COMMANDS.EDITED} - "${name}"`);
         }
       } else {
         if (localCommand.deleted) {
-          console.log(`Skipping registration of command "${name}"`);
+          console.log(`${messages.COMMANDS.SKIPPED} - "${name}"`);
           continue;
         }
 
@@ -44,10 +49,13 @@ module.exports = async (client) => {
           options,
         });
 
-        console.log(`Registered command "${name}"`);
+        console.log(`${messages.COMMANDS.REGISTERED} - "${name}"`);
       }
     }
   } catch (error) {
+    console.log(
+      `${messages.GENERIC_ERROR} - ${__filename.slice(__dirname.length + 1)}`,
+    );
     console.log(error);
   }
 };

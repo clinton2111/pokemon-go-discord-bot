@@ -1,6 +1,10 @@
 const { activityStatus } = require('../../../config.json');
-const { ActivityType } = require('discord.js');
+const { ActivityType, Client } = require('discord.js');
 
+/**
+ *
+ * @param {Client} client
+ */
 module.exports = (client) => {
   let status = [];
 
