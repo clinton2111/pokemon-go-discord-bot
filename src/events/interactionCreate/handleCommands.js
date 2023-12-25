@@ -1,6 +1,12 @@
-const { devs, testServer } = require('../../../config.json');
+const { devs, testServer, messages } = require('../../../config.json');
 const getLocalCommands = require('../../utils/getLocalCommands');
+const { Client, Interaction } = require('discord.js');
 
+/**
+ *
+ * @param {Client} client
+ * @param {Interaction} interaction
+ */
 module.exports = async (client, interaction) => {
   if (!interaction.isChatInputCommand()) return;
 
@@ -16,7 +22,7 @@ module.exports = async (client, interaction) => {
     if (commandObject.devOnly) {
       if (!devs.includes(interaction.member.id)) {
         interaction.reply({
-          content: 'Dev only command',
+          content: messages.COMMANDS.NOT_DEV_MEMBER,
           ephemeral: true,
         });
         return;
@@ -26,7 +32,7 @@ module.exports = async (client, interaction) => {
     if (commandObject.testOnly) {
       if (!testServer === interaction.guild.id) {
         interaction.reply({
-          content: 'Command cannot be ran here',
+          content: messages.COMMANDS.NOT_DEV_SERVER,
           ephemeral: true,
         });
         return;
@@ -37,7 +43,7 @@ module.exports = async (client, interaction) => {
       for (const permission of commandObject.permissionsRequired) {
         if (!interaction.member.permission.has(permission)) {
           interaction.reply({
-            content: 'Not enough permissions',
+            content: messages.COMMANDS.NOT_ENOUGH_PERMISSIONS_MEMBER,
             ephemeral: true,
           });
           return;
@@ -51,7 +57,7 @@ module.exports = async (client, interaction) => {
 
         if (!bot.permission.has(permission)) {
           interaction.reply({
-            content: "I don't have enough permissions",
+            content: messages.COMMANDS.NOT_ENOUGH_PERMISSIONS_BOT,
             ephemeral: true,
           });
           return;
@@ -61,6 +67,9 @@ module.exports = async (client, interaction) => {
 
     await commandObject.callback(client, interaction);
   } catch (error) {
+    console.log(
+      `${messages.GENERIC_ERROR} - ${__filename.slice(__dirname.length + 1)}`,
+    );
     console.log(error);
   }
 };

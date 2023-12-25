@@ -1,0 +1,21 @@
+{
+    "testServer":"",
+    "clientId":"",
+    "devs":[""],
+    "activityStatus":[],
+    "messages":{
+        "DB_CONNECTION_SUCCESS":"✅ Connected to database",
+        "DB_CONNECTION_ERROR":"❌ Error: Could not connect to database",
+        "COMMANDS": {
+            "REGISTERED":"✅ Registered command",
+            "SKIPPED":"⏩ Skipping command",
+            "DELETED":"🗑️ Deleted command",
+            "EDITED":"✏️ Edited command",
+            "NOT_DEV_SERVER": "🚫 Command cannot be ran here",
+            "NOT_DEV_MEMBER": "👨‍💻 Command requires developer permissions",
+            "NOT_ENOUGH_PERMISSIONS_MEMBER": "✋ You do not have enough permissions",
+            "NOT_ENOUGH_PERMISSIONS_BOT": "🛠️ I do not have enough permissions"
+        },
+        "GENERIC_ERROR":"❌ Error in file"
+    }
+}

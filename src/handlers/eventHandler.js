@@ -1,6 +1,11 @@
 const path = require('path');
 const getAllFiles = require('../utils/getAllFiles');
+const { Client } = require('discord.js');
 
+/**
+ *
+ * @param {Client} client
+ */
 module.exports = (client) => {
   const eventFolders = getAllFiles(path.join(__dirname, '..', 'events'), true);
 
@@ -22,7 +27,7 @@ module.exports = (client) => {
           const eventFunction = require(eventFile);
           await eventFunction(client, args);
         } catch (error) {
-          console.log(`Could not require - ${eventFile}`);
+          console.log(`❌ Could not require function - ${eventFile}`);
         }
       }
     });
