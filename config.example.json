@@ -17,5 +17,8 @@
             "NOT_ENOUGH_PERMISSIONS_BOT": "🛠️ I do not have enough permissions"
         },
         "GENERIC_ERROR":"❌ Error in file"
+    },
+    "APIS":{
+        "ALL_POKEMON_ENDPOINT":""
     }
 }
