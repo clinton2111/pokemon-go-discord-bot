@@ -1,18 +1,19 @@
+const { CommandKit } = require('commandkit');
 const { Client, Interaction } = require('discord.js');
 
 module.exports = {
-  name: 'ping',
-  description: 'Returns with bot ping',
-  devOnly: true,
-  testOnly: true,
-  // options: Object,
+  data: {
+    name: 'ping',
+    description: 'Returns with bot client and websocket ping',
+  },
 
   /**
    *
    * @param {Client} client
    * @param {Interaction} interaction
+   * @param {CommandKit} handler
    */
-  callback: async (client, interaction) => {
+  run: async ({ interaction, client, handler }) => {
     await interaction.deferReply();
     const reply = await interaction.fetchReply();
 
@@ -21,5 +22,10 @@ module.exports = {
     interaction.editReply(
       `🌐 Client ${ping} ms | Websocket 🔌: ${client.ws.ping} ms`,
     );
+  },
+
+  options: {
+    devOnly: true,
+    deleted: false,
   },
 };

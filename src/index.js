@@ -1,9 +1,10 @@
 require('dotenv').config();
 
 const { Client, GatewayIntentBits } = require('discord.js');
-const eventHandler = require('./handlers/eventHandler');
 const { mongoose } = require('mongoose');
-const { messages } = require('../config.json');
+const { CommandKit } = require('commandkit');
+const { messages, testServer, devs } = require('../config.json');
+const path = require('path');
 
 const client = new Client({
   intents: [
@@ -20,7 +21,14 @@ const client = new Client({
     await mongoose.connect(process.env.MONGODB_URI);
     console.log(messages.DB_CONNECTION_SUCCESS);
 
-    eventHandler(client);
+    new CommandKit({
+      client,
+      commandsPath: path.join(__dirname, 'commands'),
+      eventsPath: path.join(__dirname, 'events'),
+      devGuildIds: testServer,
+      devUserIds: devs,
+      bulkRegister: true,
+    });
 
     client.login(process.env.TOKEN);
   } catch (error) {
