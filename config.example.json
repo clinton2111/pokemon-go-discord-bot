@@ -1,0 +1,14 @@
+{
+  "testServer": [],
+  "clientId": "",
+  "devs": [""],
+  "activityStatus": [],
+  "messages": {
+    "DB_CONNECTION_SUCCESS": "✅ Connected to database",
+    "DB_CONNECTION_ERROR": "❌ Error: Could not connect to database",
+    "GENERIC_ERROR": "❌ Error in file"
+  },
+  "APIS": {
+    "ALL_POKEMON_ENDPOINT": ""
+  }
+}
