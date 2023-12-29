@@ -1,6 +1,6 @@
-require('dotenv').config();
-const { Redis } = require('ioredis');
+import 'dotenv/config';
+import { Redis } from 'ioredis';
 
 const redis = new Redis(process.env.UPSTASH_URI);
 
-module.exports = redis;
+export default redis;
