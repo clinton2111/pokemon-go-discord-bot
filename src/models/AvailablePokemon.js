@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+import { Schema, model } from 'mongoose';
 
 const availablePokemonSchema = new Schema(
   {
@@ -43,4 +43,5 @@ const availablePokemonSchema = new Schema(
   },
 );
 
-module.exports = model('availablePokemon', availablePokemonSchema);
+const availablePokemon = model('availablePokemon', availablePokemonSchema);
+export default availablePokemon;
