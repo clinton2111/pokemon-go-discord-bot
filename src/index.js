@@ -38,5 +38,5 @@ try {
 
   client.login(process.env.TOKEN);
 } catch (error) {
-  console.log(MESSAGES.DB_CONNECTION_ERROR);
+  console.log(MESSAGES.DB_CONNECTION_ERROR, error);
 }
