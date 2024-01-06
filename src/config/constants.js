@@ -15,8 +15,15 @@ const TEST_SERVER_IDS = process.env.DEV_SERVER.split(', '),
     GENERIC_ERROR: '❌ Error in file',
   },
   APIS = {
-    ALL_POKEMON_ENDPOINT:
-      'https://pokemon-go-api.github.io/pokemon-go-api/api/pokedex.json',
+    ALL_POKEMON_ENDPOINT: 'https://pokemon-go-api.github.io/pokemon-go-api/api/pokedex.json',
+    ID_POKEMON_ENDPOINT_POKE_GO: 'https://pokemon-go-api.github.io/pokemon-go-api/api/pokedex/id/{id}.json',
+    ID_POKEMON_ENDPOINT_POKEAPI: 'https://pokeapi.co/api/v2/pokemon/{id}',
+  },
+  CACHE_KEYS = {
+    AUTOCOMPLETE_OPTIONS: 'formattedPokemonOptions',
+  },
+  BOT = {
+    NAME: process.env.BOT_NAME,
+    PIC: process.env.BOT_PIC_URI,
   };
-
-export { TEST_SERVER_IDS, DEVELOPER_IDS, ACTIVITY_STATUS, MESSAGES, APIS };
+export { TEST_SERVER_IDS, DEVELOPER_IDS, ACTIVITY_STATUS, MESSAGES, APIS, CACHE_KEYS, BOT };

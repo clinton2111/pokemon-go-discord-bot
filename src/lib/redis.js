@@ -1,6 +1,11 @@
 import 'dotenv/config';
 import { Redis } from 'ioredis';
 
-const redis = new Redis(process.env.UPSTASH_URI);
+const getRedisURL = () => {
+  if (process.env.UPSTASH_URI) {
+    return process.env.UPSTASH_URI;
+  }
+  throw new Error('REDIS_URI is not defined');
+};
 
-export default redis;
+export const redis = new Redis(getRedisURL());
