@@ -5,11 +5,7 @@ import { mongoose } from 'mongoose';
 import { CommandKit } from 'commandkit';
 import { fileURLToPath } from 'url';
 import path from 'path';
-import {
-  MESSAGES,
-  TEST_SERVER_IDS,
-  DEVELOPER_IDS,
-} from './config/constants.js';
+import { MESSAGES, TEST_SERVER_IDS, DEVELOPER_IDS } from './config/constants.js';
 
 const client = new Client({
   intents: [
@@ -38,5 +34,5 @@ try {
 
   client.login(process.env.TOKEN);
 } catch (error) {
-  console.log(MESSAGES.DB_CONNECTION_ERROR);
+  console.log(MESSAGES.DB_CONNECTION_ERROR, error);
 }
