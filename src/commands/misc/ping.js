@@ -18,9 +18,7 @@ export const run = async ({ interaction, client, handler }) => {
 
   const ping = reply.createdTimestamp - interaction.createdTimestamp;
 
-  interaction.editReply(
-    `🌐 Client ${ping} ms | Websocket 🔌: ${client.ws.ping} ms`,
-  );
+  interaction.editReply(`🌐 Client ${ping} ms | Websocket 🔌: ${client.ws.ping} ms`);
 };
 
 export const options = {

@@ -31,16 +31,11 @@ const fetchAllPokemon = async () => {
         nameJP: pokemon.names.Japanese,
         hasMegaEvolution: pokemon.hasMegaEvolution,
         isRegional: false,
-        imageURL:
-          pokemon.assets !== null && pokemon.assets?.image
-            ? pokemon.assets.image
-            : null,
+        imageURL: pokemon.assets !== null && pokemon.assets?.image ? pokemon.assets.image : null,
       });
 
       if (Object.keys(pokemon.regionForms).length > 0) {
-        for (const [identifier, regional] of Object.entries(
-          pokemon.regionForms,
-        )) {
+        for (const [identifier, regional] of Object.entries(pokemon.regionForms)) {
           stdPokemonData.push({
             pokeDexNo: regional.dexNr,
             formId: regional.formId,
@@ -48,19 +43,14 @@ const fetchAllPokemon = async () => {
             nameJP: regional.names.Japanese,
             hasMegaEvolution: regional.hasMegaEvolution,
             isRegional: true,
-            imageURL:
-              regional.assets !== null && regional.assets?.image
-                ? regional.assets.image
-                : null,
+            imageURL: regional.assets !== null && regional.assets?.image ? regional.assets.image : null,
           });
         }
       }
     }
 
     endTime = performance.now();
-    console.log(
-      `Data processing finished in ${(endTime - startTime).toFixed(2)}ms`,
-    );
+    console.log(`Data processing finished in ${(endTime - startTime).toFixed(2)}ms`);
 
     return stdPokemonData;
   } catch (error) {
@@ -78,9 +68,7 @@ export const directExecutionLogic = async () => {
 
     const db = mongoose.connection;
 
-    db.on('error', (error) =>
-      console.error('MongoDB connection error:', error),
-    );
+    db.on('error', (error) => console.error('MongoDB connection error:', error));
     db.once('open', async () => {
       console.log('Connected to MongoDB');
       const startTime = performance.now();
@@ -118,10 +106,7 @@ export const directExecutionLogic = async () => {
 
           return true; // Indicate success for this iteration
         } catch (error) {
-          console.log(
-            `Error inserting/updating data for ${pokemon.nameEN}:`,
-            error,
-          );
+          console.log(`Error inserting/updating data for ${pokemon.nameEN}:`, error);
           return false; // Indicate failure for this iteration
         }
       });
@@ -130,11 +115,7 @@ export const directExecutionLogic = async () => {
         await Promise.all(operations);
 
         const endTime = performance.now();
-        console.log(
-          `Data entry/updating finished in ${(endTime - startTime).toFixed(
-            2,
-          )}ms`,
-        );
+        console.log(`Data entry/updating finished in ${(endTime - startTime).toFixed(2)}ms`);
 
         db.close();
       } catch (allErrors) {

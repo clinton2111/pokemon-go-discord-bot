@@ -21,10 +21,7 @@ const formatPokemonData = (pokemon) => {
         } else {
           // These mons have weird alt form names so a bit of cleaning is needed
           if (
-            [
-              25, 150, 243, 244, 245, 249, 250, 380, 381, 413, 664, 665, 666,
-              801, 890, 892, 898,
-            ].includes(mon.pokeDexNo)
+            [25, 150, 243, 244, 245, 249, 250, 380, 381, 413, 664, 665, 666, 801, 890, 892, 898].includes(mon.pokeDexNo)
           ) {
             extraIdentifier =
               ' (' +
@@ -40,9 +37,7 @@ const formatPokemonData = (pokemon) => {
 
       standardizedOptions.push({
         id: `${mon.pokeDexNo}#${mon.formId}`,
-        name: `#${mon.pokeDexNo} ${mon.nameEN}${
-          extraIdentifier !== null ? extraIdentifier : ''
-        }`,
+        name: `#${mon.pokeDexNo} ${mon.nameEN}${extraIdentifier !== null ? extraIdentifier : ''}`,
         isRegional: mon.isRegional,
       });
     });
@@ -68,8 +63,7 @@ const fetchPokemon = async () => {
     2 = connecting
     3 = disconnecting
     */
-    if (mongoose.connection.readyState !== 1)
-      throw new Error(MESSAGES.DB_CONNECTION_ERROR);
+    if (mongoose.connection.readyState !== 1) throw new Error(MESSAGES.DB_CONNECTION_ERROR);
 
     // Fetch all the pokemon from the DB
     availablePokemon

@@ -17,9 +17,7 @@ const ready = (client, handler) => {
     });
   }
 
-  console.log(
-    `✅ ${client.user.tag} is ready - ${new Date().toLocaleString()}`,
-  );
+  console.log(`✅ ${client.user.tag} is ready - ${new Date().toLocaleString()}`);
 
   setInterval(() => {
     client.user.setActivity(status[Math.floor(Math.random() * status.length)]);
