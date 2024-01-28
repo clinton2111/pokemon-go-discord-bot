@@ -48,7 +48,7 @@ const formatPokemonData = (pokemon) => {
   }
 };
 
-const fetchPokemon = async () => {
+export const fetchPokemon = async () => {
   try {
     const cachedPokemonData = await redis.get(CACHE_KEYS.AUTOCOMPLETE_OPTIONS);
 
@@ -92,6 +92,6 @@ const fetchPokemon = async () => {
   }
 };
 
-const pokemonAutoCompleteData = await fetchPokemon();
+// const pokemonAutoCompleteData = await fetchPokemon();
 
-export default pokemonAutoCompleteData;
+// export default pokemonAutoCompleteData;

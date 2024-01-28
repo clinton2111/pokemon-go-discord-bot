@@ -1,6 +1,6 @@
 import { CommandKit } from 'commandkit';
 import Interaction, { Client, SlashCommandBuilder } from 'discord.js';
-import { default as pokemon } from '../../utils/fetchPokemon.js';
+import { fetchPokemon } from '../../utils/fetchPokemon.js';
 import { APIS, BOT } from '../../config/constants.js';
 import { default as axios } from 'axios';
 import has from 'lodash/has.js';
@@ -25,6 +25,7 @@ export const data = new SlashCommandBuilder()
  */
 export const run = async ({ interaction, client, handler }) => {
   try {
+    const pokemon = await fetchPokemon();
     const selectedPokemonID = interaction.options.getString('pokemon');
 
     const selectedPokemon = pokemon.find((mon) => mon.id === selectedPokemonID);
@@ -412,7 +413,8 @@ export const run = async ({ interaction, client, handler }) => {
  * @param {Interaction} interaction
  * @param {CommandKit} handler
  */
-export const autocomplete = ({ interaction, client, handler }) => {
+export const autocomplete = async ({ interaction, client, handler }) => {
+  const pokemon = await fetchPokemon();
   const focusedPokemon = interaction.options.getFocused(true);
 
   const filteredChoices = [];
